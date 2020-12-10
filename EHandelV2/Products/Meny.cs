@@ -71,14 +71,15 @@ namespace EHandelV2.Products
                 Console.WriteLine("Produkt " + product.ID + " är inlagd i varukorgen");
             }
 
-            Console.WriteLine("Skriv fortsätt om du vill fortsätta att lägga till produkter till varukorgen annars skriv avbryt");
+            Console.WriteLine();
+            Console.WriteLine("Skriv 1 om du vill lägga till produkter till varukorgen annars skriv 2 för att återgå till menyn");
             string input = Console.ReadLine();
 
-            if(input.ToLower() == "forsätt")
+            if (input == "1")
             {
                 this.AddToCart();
             }
-            else if(input.ToLower() == "avbryt")
+            else if (input == "¨2")
             {
                 return;
             }
@@ -130,14 +131,14 @@ namespace EHandelV2.Products
             }
 
             Console.WriteLine();
-            Console.WriteLine("Skriv fortsätt om du vill lägga till produkter till varukorgen annars skriv avbryt");
+            Console.WriteLine("Skriv 1 om du vill lägga till produkter till varukorgen annars skriv 2 för att återgå till menyn");
             string input = Console.ReadLine();
 
-            if (input.ToLower() == "forsätt")
+            if (input == "1")
             {
-                Program.Meny.AddToCart();
+                this.AddToCart();
             }
-            else if (input.ToLower() == "avbryt")
+            else if (input == "¨2")
             {
                 return;
             }
@@ -171,20 +172,21 @@ namespace EHandelV2.Products
                     break;
                 }
 
-                Console.WriteLine("Fel username och password, skriv avbryt för att återgå till menyn eller skriv fortsätt för att försöka igen");
+                Console.WriteLine();
+                Console.WriteLine("Fel username och password, skriv 1 för att försöka igen annars skriv 2 för att återgå till menyn");
                 string input = Console.ReadLine();
 
-                if(input.ToLower() == "fortsätt")
+                if (input == "1")
                 {
                     continue;
                 }
-                else if(input.ToLower() == "avbryt")
+                else if (input == "¨2")
                 {
-                    break;
+                    return;
                 }
                 else
                 {
-                    break;
+                    return;
                 }
             }
         }

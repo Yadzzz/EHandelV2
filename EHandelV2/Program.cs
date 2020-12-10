@@ -13,7 +13,7 @@ namespace EHandelV2
             while(true)
             {
                 Meny.ShowMeny();
-                Console.Clear();
+                //Console.Clear();
             }
         }
     }
