@@ -10,9 +10,11 @@ namespace EHandelV2
 
         static void Main(string[] args)
         {
-            Meny.ShowMeny();
-
-            Console.ReadKey();
+            while(true)
+            {
+                Meny.ShowMeny();
+                Console.Clear();
+            }
         }
     }
 }

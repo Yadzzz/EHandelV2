@@ -35,7 +35,21 @@ namespace EHandelV2.Products
             }
 
             Console.WriteLine();
-            Program.Meny.ShowMeny();
+            Console.WriteLine("Skriv fortsätt om du vill lägga till produkter till varukorgen annars skriv avbryt");
+            string input = Console.ReadLine();
+
+            if (input.ToLower() == "forsätt")
+            {
+                Program.Meny.AddToCart();
+            }
+            else if (input.ToLower() == "avbryt")
+            {
+                return;
+            }
+            else
+            {
+                return;
+            }
         }
 
         /*public void GetCategory()

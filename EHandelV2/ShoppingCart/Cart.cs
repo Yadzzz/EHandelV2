@@ -34,9 +34,6 @@ namespace EHandelV2.ShoppingCart
                 Products.Remove(id);
             }
         }
-
-
-
  
         public void ShowCart()
         {

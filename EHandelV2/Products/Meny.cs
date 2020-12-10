@@ -8,40 +8,83 @@ using EHandelV2.Products;
 
 namespace EHandelV2.Products
 {
-    class Meny
+    public class Meny
     {
-        public static Products.ProductManager ProductManager = new Products.ProductManager();
-        public static ShoppingCart.Cart Cart = new ShoppingCart.Cart();
-
+        public bool LoggedIn = false;
+        public string username = "admin";
+        public string password = "lösenord";
 
         public void ShowMeny()
         {
             Console.WriteLine("Tryck 1 för att komma till alla produkter");
             Console.WriteLine("Tryck 2 för att visa kategorier");
             Console.WriteLine("Tryck 3 för att söka efter produkt");
-            Console.WriteLine("Tryck 4 för att logga in som Admin");
+            
+            if(this.LoggedIn)
+            {
+                Console.WriteLine("Tryck 4 för att komma till admin funktioner.");
+            }
+            else
+            {
+                Console.WriteLine("Tryck 4 för att logga in som Admin");
+            }
+
             string input1 = Console.ReadLine();
 
             switch (input1)
             {
                 case "1":
-                    ProductManager.ShowProducts();
+                    Program.ProductManager.ShowProducts();
                     break;
 
                 case "2":
-                    GetCategory();
+                   this.GetCategory();
                     break;
                 case "3":
                     this.SearchProducts();
                     break;
 
                 case "4":
-                    this.LogIn();
+                    if(this.LoggedIn)
+                    {
+
+                    }
+                    else
+                    {
+                        this.LogIn();
+                    }
                     break;
                 default:
                     break;
             }
-            
+        }
+
+        public void AddToCart()
+        {
+            Console.WriteLine("Skriv in ID på produkten du vill lägga till i varukorgen");
+            string id = Console.ReadLine();
+
+            Product product;
+            if (Program.ProductManager.TryGetProduct(Convert.ToInt32(id), out product))
+            {
+                Program.Cart.AddProduct(product.ID);
+            }
+
+            Console.WriteLine("Skriv fortsätt om du vill fortsätta att lägga till produkter till varukorgen annars skriv avbryt");
+            string input = Console.ReadLine();
+
+            if(input.ToLower() == "forsätt")
+            {
+                this.AddToCart();
+            }
+            else if(input.ToLower() == "avbryt")
+            {
+                return;
+            }
+            else
+            {
+                return;
+            }
         }
 
         public void SearchProducts()
@@ -61,53 +104,77 @@ namespace EHandelV2.Products
 
             if (input1 == "1")
             {
-                ProductManager.ShowProductByCategory(Type.Skor);
+                Program.ProductManager.ShowProductByCategory(Type.Skor);
 
             }
             else if (input1 == "2")
             {
-                ProductManager.ShowProductByCategory(Type.Keps);
+                Program.ProductManager.ShowProductByCategory(Type.Keps);
             }
             else if (input1 == "3")
             {
-                ProductManager.ShowProductByCategory(Type.Strumpor);
+                Program.ProductManager.ShowProductByCategory(Type.Strumpor);
             }
             else if (input1 == "4")
             {
-                ProductManager.ShowProductByCategory(Type.Byxor);
+                Program.ProductManager.ShowProductByCategory(Type.Byxor);
             }
             else if (input1 == "5")
             {
-                ProductManager.ShowProductByCategory(Type.Hoodie);
+                Program.ProductManager.ShowProductByCategory(Type.Hoodie);
 
             }
             else if (input1 == "6")
             {
-                ProductManager.ShowProductByCategory(Type.TShirt);
+                Program.ProductManager.ShowProductByCategory(Type.TShirt);
             }
 
             Console.WriteLine();
-            Program.Meny.ShowMeny();
+            Console.WriteLine("Tryck enter för att lägga till produkter i varukorg, annars skriv avbryt");
+            string input = Console.ReadLine();
+
+            if (input.ToLower() == "avbryt")
+            {
+                return;
+            }
+
+            Program.Meny.AddToCart();
         }
 
         public void LogIn()
         {
-            string username = "admin";
-            string password = "lösenord";
-            while (username == "admin" && password == "lösenord")
+            if(this.LoggedIn)
+            {
+                Console.WriteLine("Du är redan inloggad");
+                return;
+            }
+
+            while (!this.LoggedIn)
             {
 
                 Console.WriteLine("Skriv ditt användarnamn: (Korrekt användarnamn är 'admin')");
                 string userInput = Console.ReadLine();
                 Console.WriteLine("Skriv ditt lösenord: (Korrekt lösenord är 'lösenord')");
                 string passInput = Console.ReadLine();
+                Console.WriteLine();
 
-
-                if (userInput != username || passInput != password)
+                if(this.username.ToLower() == userInput.ToLower() && this.password.ToLower() == passInput.ToLower())
                 {
-                    Console.WriteLine("Fel användarnamn eller lösenord, vänligen försök igen.");
-                    string pInput = Console.ReadLine();
-                    passInput = pInput;
+                    this.LoggedIn = true;
+                    Console.WriteLine("Du är nu inloggad.");
+                    break;
+                }
+
+                Console.WriteLine("Fel username och password, skriv avbryt för att återgå till menyn eller skriv fortsätt för att försöka igen");
+                string input = Console.ReadLine();
+
+                if(input.ToLower() == "fortsätt")
+                {
+                    continue;
+                }
+                else if(input.ToLower() == "avbryt")
+                {
+                    break;
                 }
                 else
                 {
