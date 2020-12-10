@@ -19,14 +19,15 @@ namespace EHandelV2.Products
             Console.WriteLine("Tryck 1 för att komma till alla produkter");
             Console.WriteLine("Tryck 2 för att visa kategorier");
             Console.WriteLine("Tryck 3 för att söka efter produkt");
-            
-            if(this.LoggedIn)
+            Console.WriteLine("Tryck 4 för att visa varukorg");
+
+            if (this.LoggedIn)
             {
-                Console.WriteLine("Tryck 4 för att komma till admin funktioner.");
+                Console.WriteLine("Tryck 5 för att komma till admin funktioner.");
             }
             else
             {
-                Console.WriteLine("Tryck 4 för att logga in som Admin");
+                Console.WriteLine("Tryck 5 för att logga in som Admin");
             }
 
             string input1 = Console.ReadLine();
@@ -45,6 +46,11 @@ namespace EHandelV2.Products
                     break;
 
                 case "4":
+                    Program.Cart.ShowCart();
+                    break;
+                    
+
+                case "5":
                     if(this.LoggedIn)
                     {
 
