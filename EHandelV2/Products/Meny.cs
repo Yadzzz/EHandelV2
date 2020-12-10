@@ -68,6 +68,7 @@ namespace EHandelV2.Products
             if (Program.ProductManager.TryGetProduct(Convert.ToInt32(id), out product))
             {
                 Program.Cart.AddProduct(product.ID);
+                Console.WriteLine("Produkt " + product.ID + " är inlagd i varukorgen");
             }
 
             Console.WriteLine("Skriv fortsätt om du vill fortsätta att lägga till produkter till varukorgen annars skriv avbryt");
@@ -122,7 +123,6 @@ namespace EHandelV2.Products
             else if (input1 == "5")
             {
                 Program.ProductManager.ShowProductByCategory(Type.Hoodie);
-
             }
             else if (input1 == "6")
             {
@@ -130,15 +130,21 @@ namespace EHandelV2.Products
             }
 
             Console.WriteLine();
-            Console.WriteLine("Tryck enter för att lägga till produkter i varukorg, annars skriv avbryt");
+            Console.WriteLine("Skriv fortsätt om du vill lägga till produkter till varukorgen annars skriv avbryt");
             string input = Console.ReadLine();
 
-            if (input.ToLower() == "avbryt")
+            if (input.ToLower() == "forsätt")
+            {
+                Program.Meny.AddToCart();
+            }
+            else if (input.ToLower() == "avbryt")
             {
                 return;
             }
-
-            Program.Meny.AddToCart();
+            else
+            {
+                return;
+            }
         }
 
         public void LogIn()
