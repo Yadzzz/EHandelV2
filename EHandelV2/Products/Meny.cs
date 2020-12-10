@@ -91,7 +91,31 @@ namespace EHandelV2.Products
 
         public void SearchProducts()
         {
+            Console.WriteLine("Skriv produkt Id på produkten du vill söka på");
+            string id = Console.ReadLine();
 
+            Product product;
+            if(Program.ProductManager.TryGetProduct(Convert.ToInt32(id), out product))
+            {
+                Console.WriteLine("ID: " + product.ID + ", Name: " + product.Name + ", Description: " + product.Description + ", Price: " + product.Price); ;
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Skriv 1 om du vill lägga till produkter till varukorgen annars skriv 2 för att återgå till menyn");
+            string input = Console.ReadLine();
+
+            if (input == "1")
+            {
+                this.AddToCart();
+            }
+            else if (input == "¨2")
+            {
+                return;
+            }
+            else
+            {
+                return;
+            }
         }
 
         public void GetCategory()
