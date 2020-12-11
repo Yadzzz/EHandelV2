@@ -22,7 +22,7 @@ namespace EHandelV2.Products
             this.Products.Add(7, new Product(7, "Hoodie", "Storlek M,Färg Brun Märke YadsProgrammeringsHoodie", 50, "hoodie"));
             this.Products.Add(8, new Product(8, "Hoodie", "Storlek M,Färg vit, Märke DanielsFashionHoodie", 150, "hoodie"));
             this.Products.Add(9, new Product(9, "T-shirt", "Storlek L, Färg Guld, Märke FelipesKläder", 20000, "t-shirt"));
-            this.Products.Add(10, new Product(10, "T-shirt", "Storlek L, Färg gul, Märke Zeynabs EgnaKläder", 1, "t-shirt"));
+            this.Products.Add(10, new Product(10, "T-shirt", "Storlek L, Färg gul, Märke Zeynabs EgnaKläder", 10, "t-shirt"));
 
             
         }
