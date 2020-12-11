@@ -49,7 +49,7 @@ namespace EHandelV2.ShoppingCart
             }
 
             Console.WriteLine("Total Price: " + totalPrice.ToString());
-            Console.WriteLine("Vill du fortsätta handla skriv 1?");
+            Console.WriteLine("Vill du fortsätta handla skriv 1");
             Console.WriteLine("Vill du gå till betalning skriv 2");
             if (Products.Count > 0)
             {
@@ -97,6 +97,9 @@ namespace EHandelV2.ShoppingCart
 
             int totalPrice = 0;
 
+            Console.WriteLine("-- KVITTO --");
+            Console.WriteLine(" ");
+
             foreach (Product ProductCart in this.Products.Values)
             {
                 Console.WriteLine("Name: " + ProductCart.Name);
@@ -131,6 +134,7 @@ namespace EHandelV2.ShoppingCart
 
             foreach (Product ProductCart in this.Products.Values)
             {
+                
                 Console.WriteLine("Name: " + ProductCart.Name);
                 Console.WriteLine("ID: " + ProductCart.ID);
                 Console.WriteLine("Price: " + ProductCart.Price);
@@ -148,7 +152,7 @@ namespace EHandelV2.ShoppingCart
         {
             Console.WriteLine("Tack för din beställning " + name);
             Console.WriteLine("Din order levereras till " + adress);
-            Console.WriteLine("Vällkommen åter");
+            Console.WriteLine("Välkommen åter!");
         }
     }
 }
