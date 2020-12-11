@@ -52,52 +52,6 @@ namespace EHandelV2.Products
             }
         }
 
-        /*public void GetCategory()
-        {
-            Console.WriteLine("Tryck 1 för skor");
-            Console.WriteLine("Tryck 2 för Keps");
-            Console.WriteLine("Tryck 3 för Strumpor");
-            Console.WriteLine("Tryck 4 för Byxor");
-            Console.WriteLine("Tryck 5 för Hoodie");
-            Console.WriteLine("Tryck 6 för T-shirt");
-           string input1 = Console.ReadLine();
-            if(input1 == "1")
-            {
-                ShowProductById1(1);
-                ShowProductById1(2);
-
-            }
-            else if(input1 == "2")
-            {
-                ShowProductById1(3);
-            }
-            else if (input1 == "3")
-            {
-                ShowProductById1(4);
-            }
-            else if (input1 == "4")
-            {
-                ShowProductById1(5);
-                ShowProductById1(6);
-            }
-            else if (input1 == "5")
-            {
-                
-                ShowProductById1(7);
-                ShowProductById1(8);
-
-            }
-            else if (input1 == "6")
-            {
-                ShowProductById1(9);
-                ShowProductById1(10);
-
-            }
-
-
-
-        }*/
-
         public void ShowProductByCategory(Type category)
         {
             foreach(Product product in this.Products.Values)

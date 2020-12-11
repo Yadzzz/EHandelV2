@@ -53,7 +53,7 @@ namespace EHandelV2.Products
                 case "5":
                     if(this.LoggedIn)
                     {
-
+                        this.DisplayAdminFunctions();
                     }
                     else
                     {
@@ -93,6 +93,90 @@ namespace EHandelV2.Products
             {
                 return;
             }
+        }
+
+        public void DisplayAdminFunctions()
+        {
+            Console.WriteLine("Skriv 1 för att lägga till produkter till försäljning");
+            Console.WriteLine("Skriv 2 för att ta bort produkt");
+            Console.WriteLine("Skriv 3 för att ändra priset på en produkt");
+            Console.WriteLine("Skriv 4 för att återgå till menyn");
+            string input = Console.ReadLine();
+
+            switch(input)
+            {
+                case "1":
+                    Console.WriteLine("Skriv id, namn, beskrivning, pris och kategori på produkten du vill lägga till. Separera dem med kommatecken");
+                    string produktLine = Console.ReadLine();
+                    
+                    if(produktLine.Contains(' '))
+                    {
+                        produktLine = produktLine.Replace(" ", "");
+                    }
+
+                    string[] arr = produktLine.Split(',');
+                    
+                    if(arr.Length != 5)
+                    {
+                        Console.WriteLine("Saknas info");
+                        return;
+                    }
+
+                    try
+                    {
+                        int id = Convert.ToInt32(arr[0]);
+                        string namn = arr[1];
+                        string beskrivning = arr[2];
+                        int pris = Convert.ToInt32(arr[3]);
+                        string kategori = arr[4];
+
+                        Program.ProductManager.AddProduct(id, namn, beskrivning, pris, kategori);
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Fel inmatning.");
+                        return;
+                    }
+                    break;
+
+                case "2":
+                    foreach (var v in Program.ProductManager.Products.Values)
+                    {
+                        Console.WriteLine("ID: " + v.ID + ", Name: " + v.Name + ", Description: " + v.Description + ", Price: " + v.Price); ;
+                    }
+
+                    Console.WriteLine();
+                    Console.WriteLine("Skriv ID på produkten du vill ta bort.");
+                    int inputc2 = Convert.ToInt32(Console.ReadLine());
+                    Program.ProductManager.RemoveProduct(inputc2);
+                    break;
+
+                case "3":
+                    foreach(var v in Program.ProductManager.Products.Values)
+                    {
+                        Console.WriteLine("ID: " + v.ID + ", Name: " + v.Name + ", Description: " + v.Description + ", Price: " + v.Price); ;
+                    }
+
+                    Console.WriteLine();
+                    Console.WriteLine("Skriv ID på produkten du vill ändra priset på");
+                    int produktID = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Skriv priset du vill ändra till");
+                    int nyttPris = Convert.ToInt32(Console.ReadLine());
+
+                    Product product;
+                    if (Program.ProductManager.TryGetProduct(produktID, out product))
+                    {
+                        product.Price = nyttPris;
+                    }
+
+                    Console.WriteLine("Priset är ändrad");
+                    break;
+
+                case "4":
+                    return;
+            }
+
+            DisplayAdminFunctions();
         }
 
         public void SearchProducts()

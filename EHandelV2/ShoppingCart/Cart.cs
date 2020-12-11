@@ -12,7 +12,6 @@ namespace EHandelV2.ShoppingCart
         public Dictionary<int, Product> Products;
         public string name, adress;
 
-
         public Cart()
         {
             Products = new Dictionary<int, Product>();
